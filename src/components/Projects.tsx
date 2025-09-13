@@ -27,7 +27,7 @@ const projects = [
     description: 'Modern development environment with integrated AI assistance, real-time collaboration features, and advanced code analysis tools.',
     tech: ['VS Code', 'AI Integration', 'GitHub', 'TypeScript', 'DevOps'],
     link: 'https://github.com/Bhuvaneshpree/Basic_portfolio.git',
-    demoLink: 'https://real-time-insti-detect.vercel.app/',
+    demoLink: 'https://basic-portfolio-woad.vercel.app',
     image: '/images/projects/dev-workspace.jpg'
   }
 ];
