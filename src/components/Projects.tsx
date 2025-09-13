@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Parallax } from 'react-scroll-parallax';
 
@@ -71,7 +72,7 @@ const Projects = () => {
             initial="initial"
             whileInView="animate"
           >
-            {projects.map((project, index) => (
+            {projects.map((project) => (
               <motion.div
                 key={project.name}
                 variants={itemVariants}
@@ -80,10 +81,13 @@ const Projects = () => {
               >
                 <div className="relative h-56 overflow-hidden rounded-t-xl">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
-                  <img 
-                    src={project.image} 
+                  <Image 
+                    src={project.image}
                     alt={project.name}
-                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                    width={600}
+                    height={400}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    className="transform hover:scale-110 transition-transform duration-700"
                   />
                 </div>
                 

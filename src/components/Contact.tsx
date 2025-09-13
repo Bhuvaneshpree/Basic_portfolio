@@ -50,7 +50,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Let's Connect
+            Let&apos;s Connect
           </motion.h2>
 
           <div className="grid gap-8 md:grid-cols-3">

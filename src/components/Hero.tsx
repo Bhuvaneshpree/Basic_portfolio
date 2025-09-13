@@ -104,7 +104,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-white/80 text-sm uppercase tracking-wider mb-4">Let's Connect</h3>
+            <h3 className="text-white/80 text-sm uppercase tracking-wider mb-4">Let&apos;s Connect</h3>
             <AudioPlayer src="/demo/pb1.mp3" startVolume={0.35} loop />
             <div className="flex flex-wrap gap-4 justify-center items-center">
               <motion.a
