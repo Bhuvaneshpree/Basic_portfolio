@@ -14,7 +14,7 @@ const contactMethods = [
       </svg>
     ),
     link: 'https://github.com/bhuvaneshpree',
-    username: 'bhuvaneshpree'
+    username: 'bhuvan'
   },
   {
     name: 'Email',
