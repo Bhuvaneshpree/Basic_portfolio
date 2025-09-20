@@ -46,7 +46,7 @@ const Projects = () => {
 
   return (
     <section className="py-20 relative overflow-hidden" id="projects">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-50/10 dark:to-blue-950/10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-blue-50/10" />
       
       <Parallax translateY={[-15, 15]} className="relative z-10">
         <div className="max-w-6xl mx-auto px-4">
@@ -91,7 +91,7 @@ const Projects = () => {
                   <h3 className="text-xl font-semibold mb-2 heading-primary">
                     {project.name}
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  <p className="text-gray-700 mb-4">
                     {project.description}
                   </p>
                   
@@ -99,7 +99,7 @@ const Projects = () => {
                     {project.tech.map((tech) => (
                       <span 
                         key={tech}
-                        className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 rounded-full"
+                        className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded-full"
                       >
                         {tech}
                       </span>
@@ -111,7 +111,7 @@ const Projects = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                      className="inline-flex items-center text-blue-600 hover:underline"
                       whileHover={{ x: 5 }}
                     >
                       <svg 
@@ -127,7 +127,7 @@ const Projects = () => {
                       href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                      className="inline-flex items-center text-blue-600 hover:underline"
                       whileHover={{ x: 5 }}
                     >
                       <svg 

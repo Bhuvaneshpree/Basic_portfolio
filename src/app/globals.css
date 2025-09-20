@@ -121,15 +121,6 @@ body {
   --color-accent-dark: theme('colors.pink.700');
 }
 
-.dark {
-  --color-primary: theme('colors.blue.400');
-  --color-primary-dark: theme('colors.blue.500');
-  --color-secondary: theme('colors.purple.400');
-  --color-secondary-dark: theme('colors.purple.500');
-  --color-accent: theme('colors.pink.400');
-  --color-accent-dark: theme('colors.pink.500');
-}
-
 /* Glass Morphism */
 .glass {
   background: rgba(255, 255, 255, 0.1);

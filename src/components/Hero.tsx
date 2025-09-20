@@ -1,32 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import AudioPlayer from './AudioPlayer';
 import UnscrambleHeading from './common/UnscrambleHeading';
 
 const Hero = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    // Set initial theme to light and ensure it's applied
-    document.documentElement.classList.remove('dark');
-    localStorage.theme = 'light';
-    setTheme('light');
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = 'light';
-    }
-  };
-
   return (
     <div 
       data-theme-bg
@@ -126,7 +105,7 @@ const Hero = () => {
                 href="https://github.com/Bhuvaneshpree"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-zinc-800/50 dark:bg-zinc-700/50 hover:bg-zinc-700/50 dark:hover:bg-zinc-600/50 text-white/90 rounded-lg transition-all flex items-center gap-2 text-sm"
+                className="px-6 py-2.5 bg-zinc-800/50 hover:bg-zinc-700/50 text-white/90 rounded-lg transition-all flex items-center gap-2 text-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -137,7 +116,7 @@ const Hero = () => {
                 href="https://www.linkedin.com/in/bhuvanesh-v-4628282ab"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-2.5 bg-blue-600/20 dark:bg-blue-500/20 hover:bg-blue-600/30 dark:hover:bg-blue-500/30 text-white/90 rounded-lg transition-all flex items-center gap-2 text-sm"
+                className="px-6 py-2.5 bg-blue-600/20 hover:bg-blue-600/30 text-white/90 rounded-lg transition-all flex items-center gap-2 text-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -146,32 +125,13 @@ const Hero = () => {
               </motion.a>
               <motion.a
                 href="mailto:bhuvan1075@gmail.com"
-                className="px-6 py-2.5 bg-red-500/20 dark:bg-red-400/20 hover:bg-red-500/30 dark:hover:bg-red-400/30 text-white/90 rounded-lg transition-all flex items-center gap-2 text-sm"
+                className="px-6 py-2.5 bg-red-500/20 hover:bg-red-500/30 text-white/90 rounded-lg transition-all flex items-center gap-2 text-sm"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 Email
               </motion.a>
-              
-              {/* Theme Toggle */}
-              <motion.button
-                onClick={toggleTheme}
-                className="px-6 py-2.5 bg-yellow-500/20 dark:bg-blue-600/20 hover:bg-yellow-500/30 dark:hover:bg-blue-600/30 text-white/90 rounded-lg transition-all flex items-center gap-2 text-sm"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {theme === 'dark' ? (
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fillRule="evenodd" clipRule="evenodd" />
-                  </svg>
-                ) : (
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                  </svg>
-                )}
-                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-              </motion.button>
             </div>
           </motion.div>
         </motion.div>

@@ -41,7 +41,7 @@ const contactMethods = [
 const Contact = () => {
   return (
     <section className="py-20 relative overflow-hidden" id="contact">
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-50/20 to-transparent dark:from-blue-950/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-50/20 to-transparent" />
       
       <Parallax translateY={[-15, 15]} className="relative z-10">
         <div className="max-w-4xl mx-auto px-4">
@@ -71,13 +71,13 @@ const Contact = () => {
                 whileHover={{ y: -5 }}
               >
                 <motion.div
-                  className="text-blue-600 dark:text-blue-400 mb-4"
+                  className="text-blue-600 mb-4"
                   whileHover={{ scale: 1.1 }}
                 >
                   {method.icon}
                 </motion.div>
                 <h3 className="text-lg font-semibold mb-2">{method.name}</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-center">
+                <p className="text-gray-600 text-center">
                   {method.username}
                 </p>
               </motion.a>
@@ -85,7 +85,7 @@ const Contact = () => {
           </div>
 
           <motion.p
-            className="text-center mt-12 text-gray-600 dark:text-gray-400"
+            className="text-center mt-12 text-gray-600"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.6 }}

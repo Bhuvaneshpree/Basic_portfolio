@@ -6,7 +6,7 @@ import AnimatedHeading from '@/components/common/AnimatedHeading';
 
 export default function AnimatedHeadingDemo() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex flex-col justify-center items-center p-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col justify-center items-center p-8">
       {/* Demo Section 1: Basic Heading */}
       <div className="mb-16">
         <AnimatedHeading

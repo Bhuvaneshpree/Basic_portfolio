@@ -55,7 +55,7 @@ const MobileNavigationItem = ({ link, index, scrollToSection }: {
       <motion.button
         onClick={() => scrollToSection(link.href)}
         onMouseEnter={handleHover}
-        className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
+        className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-300 font-mono"
         whileHover={{ 
           scale: 1.05,
           textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
@@ -85,7 +85,7 @@ const NavigationItem = ({ link, index, scrollToSection }: {
       <motion.button
         onClick={() => scrollToSection(link.href)}
         onMouseEnter={handleHover}
-        className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
+        className="text-gray-700 hover:text-blue-600 transition-colors duration-300 font-mono"
         whileHover={{ 
           y: -2,
           textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
@@ -118,13 +118,13 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-lg z-50">
+    <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-lg shadow-lg z-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <motion.a
             href="#"
             onMouseEnter={logoHandleHover}
-            className="text-xl font-bold text-blue-600 dark:text-blue-400 font-mono"
+            className="text-xl font-bold text-blue-600 font-mono"
             whileHover={{ scale: 1.05 }}
           >
             {logoDisplay}
@@ -149,7 +149,7 @@ const Navigation = () => {
             whileTap={{ scale: 0.95 }}
           >
             <motion.span 
-              className="w-6 h-0.5 bg-gray-700 dark:bg-gray-300"
+              className="w-6 h-0.5 bg-gray-700"
               animate={{
                 rotate: isOpen ? 45 : 0,
                 y: isOpen ? 6 : 0
@@ -157,14 +157,14 @@ const Navigation = () => {
               transition={{ duration: 0.3 }}
             />
             <motion.span 
-              className="w-6 h-0.5 bg-gray-700 dark:bg-gray-300"
+              className="w-6 h-0.5 bg-gray-700"
               animate={{
                 opacity: isOpen ? 0 : 1
               }}
               transition={{ duration: 0.3 }}
             />
             <motion.span 
-              className="w-6 h-0.5 bg-gray-700 dark:bg-gray-300"
+              className="w-6 h-0.5 bg-gray-700"
               animate={{
                 rotate: isOpen ? -45 : 0,
                 y: isOpen ? -6 : 0
@@ -181,7 +181,7 @@ const Navigation = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="absolute top-16 left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg md:hidden"
+              className="absolute top-16 left-0 w-full bg-white/95 backdrop-blur-lg shadow-lg md:hidden"
             >
               <div className="flex flex-col items-center gap-6 py-6">
                 {links.map((link, i) => (

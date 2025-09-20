@@ -55,24 +55,14 @@ const Skills = () => {
 
   return (
     <section id="skills" className="relative min-h-screen py-16">
-      {/* Background Image - cy3d.gif for light mode, pb.gif for dark mode */}
+      {/* Background Image - cy3d.gif */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat dark:opacity-100 opacity-0"
-        style={{
-          backgroundImage: "url('/images/bg/pb.gif')"
-        }}
-      />
-      
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat dark:opacity-0 opacity-50"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50"
         style={{
           backgroundImage: "url('/images/bg/cy3d.gif')"
         }}
       />
       
-      {/* Dark Overlay - only for dark mode */}
-      <div className="absolute inset-0 bg-black/60 dark:block hidden" />
-
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
         <motion.div
