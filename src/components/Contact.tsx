@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Parallax } from 'react-scroll-parallax';
+import UnscrambleHeading from './common/UnscrambleHeading';
 
 const contactMethods = [
   {
@@ -50,7 +51,10 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Let&apos;s Connect
+            <UnscrambleHeading
+              text="Let's Connect"
+              color="inherit"
+            />
           </motion.h2>
 
           <div className="grid gap-8 md:grid-cols-3">

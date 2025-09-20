@@ -4,23 +4,16 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Parallax } from 'react-scroll-parallax';
+import UnscrambleHeading from './common/UnscrambleHeading';
 
 const projects = [
   {
-    name: 'AI Agriculture Monitoring',
-    description: 'Advanced drone-based AI system for smart agriculture monitoring and data analytics, featuring real-time crop health analysis and automated farming insights.',
-    tech: ['AI/ML', 'Drone Technology', 'IoT', 'Data Analytics', 'React'],
+    name: 'AgriMetaverse Intelligence',
+    description: 'Next-generation AI platform for agricultural market prediction featuring 4 advanced AI models (SARIMAX, Prophet, XGBoost, Ensemble), real-time analytics, and comprehensive forecasting for 22 commodities.',
+    tech: ['AI/ML', 'SARIMAX', 'Prophet', 'XGBoost', 'Streamlit', 'Python'],
     link: 'https://github.com/Bhuvaneshpree/Agrimetaverse-Intelligence',
-    demoLink: 'https://agrimetaverse-intelligence.vercel.app/',
+    demoLink: 'https://agrimetaverse-predictor.streamlit.app/',
     image: '/images/projects/ai-agriculture.jpg'
-  },
-  {
-    name: 'Smart City Infrastructure',
-    description: 'Next-generation smart city platform integrating IoT sensors, AI-driven analytics, and automated urban management systems for sustainable city development.',
-    tech: ['Smart City', 'IoT', 'Cloud Computing', 'Node.js', 'MongoDB'],
-    link: 'https://github.com/Bhuvaneshpree/RD-INFRO-TECHNOLOGY',
-    demoLink: 'https://rd-infro-tech.vercel.app/',
-    image: '/images/projects/smart-city.jpg'
   },
   {
     name: 'Bhuvanesh Portfolio',
@@ -63,7 +56,10 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Featured Projects
+            <UnscrambleHeading
+              text="Featured Projects"
+              color="inherit"
+            />
           </motion.h2>
 
           <motion.div

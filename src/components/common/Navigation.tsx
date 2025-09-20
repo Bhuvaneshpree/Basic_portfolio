@@ -11,8 +11,36 @@ const links = [
   { name: 'Contact', href: '#contact' }
 ];
 
+function useTextUnscramble(text: string) {
+  const [display, setDisplay] = useState(text);
+
+  const handleHover = () => {
+    let iteration = 0;
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const interval = setInterval(() => {
+      setDisplay((prev) =>
+        text
+          .split("")
+          .map((char, index) => {
+            if (index < iteration) {
+              return text[index];
+            }
+            return letters[Math.floor(Math.random() * letters.length)];
+          })
+          .join("")
+      );
+
+      if (iteration >= text.length) clearInterval(interval);
+      iteration += 1 / 3; // speed
+    }, 30);
+  };
+
+  return [display, handleHover] as const;
+}
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [logoDisplay, logoHandleHover] = useTextUnscramble("Bhuvanesh");
 
   const scrollToSection = (href: string) => {
     setIsOpen(false);
@@ -35,81 +63,109 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           <motion.a
             href="#"
-            className="text-xl font-bold text-blue-600 dark:text-blue-400"
+            onMouseEnter={logoHandleHover}
+            className="text-xl font-bold text-blue-600 dark:text-blue-400 font-mono"
             whileHover={{ scale: 1.05 }}
           >
-            Bhuvanesh
+            {logoDisplay}
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {links.map((link) => (
-              <motion.button
-                key={link.name}
-                onClick={() => scrollToSection(link.href)}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {link.name}
-              </motion.button>
-            ))}
-          </div>
+          <ul className="hidden md:flex space-x-8">
+            {links.map((link, i) => {
+              const [display, handleHover] = useTextUnscramble(link.name);
+              return (
+                <motion.li
+                  key={link.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.15 }}
+                >
+                  <motion.button
+                    onClick={() => scrollToSection(link.href)}
+                    onMouseEnter={handleHover}
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
+                    whileHover={{ 
+                      y: -2,
+                      textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {display}
+                  </motion.button>
+                </motion.li>
+              );
+            })}
+          </ul>
 
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2"
+            className="md:hidden flex flex-col gap-1 p-2"
             whileTap={{ scale: 0.95 }}
           >
-            <svg
-              className="w-6 h-6 text-gray-700 dark:text-gray-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            <motion.span 
+              className="w-6 h-0.5 bg-gray-700 dark:bg-gray-300"
+              animate={{
+                rotate: isOpen ? 45 : 0,
+                y: isOpen ? 6 : 0
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span 
+              className="w-6 h-0.5 bg-gray-700 dark:bg-gray-300"
+              animate={{
+                opacity: isOpen ? 0 : 1
+              }}
+              transition={{ duration: 0.3 }}
+            />
+            <motion.span 
+              className="w-6 h-0.5 bg-gray-700 dark:bg-gray-300"
+              animate={{
+                rotate: isOpen ? -45 : 0,
+                y: isOpen ? -6 : 0
+              }}
+              transition={{ duration: 0.3 }}
+            />
           </motion.button>
         </div>
 
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden py-4"
+            <motion.ul
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-16 left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg md:hidden"
             >
-              <div className="flex flex-col space-y-4">
-                {links.map((link) => (
-                  <motion.button
-                    key={link.name}
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 py-2"
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {link.name}
-                  </motion.button>
-                ))}
+              <div className="flex flex-col items-center gap-6 py-6">
+                {links.map((link, i) => {
+                  const [display, handleHover] = useTextUnscramble(link.name);
+                  return (
+                    <motion.li
+                      key={link.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <motion.button
+                        onClick={() => scrollToSection(link.href)}
+                        onMouseEnter={handleHover}
+                        className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
+                        whileHover={{ 
+                          scale: 1.05,
+                          textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {display}
+                      </motion.button>
+                    </motion.li>
+                  );
+                })}
               </div>
-            </motion.div>
+            </motion.ul>
           )}
         </AnimatePresence>
       </div>

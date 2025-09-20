@@ -380,3 +380,17 @@ body {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Text Shadow for Better Visibility */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 
+               1px 1px 2px rgba(0, 0, 0, 0.9),
+               0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-strong {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 1), 
+               2px 2px 4px rgba(0, 0, 0, 0.9),
+               1px 1px 2px rgba(0, 0, 0, 0.8),
+               0 0 10px rgba(0, 0, 0, 0.7);
+}

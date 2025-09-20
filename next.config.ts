@@ -4,9 +4,6 @@ const nextConfig = {
     domains: ['cdn.jsdelivr.net'],
     unoptimized: true
   },
-  experimental: {
-    turbo: true,
-  },
 };
 
 module.exports = nextConfig;

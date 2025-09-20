@@ -4,14 +4,17 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Parallax } from 'react-scroll-parallax';
 import AudioPlayer from './AudioPlayer';
+import AnimatedHeading from './common/AnimatedHeading';
+import UnscrambleHeading from './common/UnscrambleHeading';
 
 const Hero = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
-    // Get initial theme
-    const isDark = document.documentElement.classList.contains('dark');
-    setTheme(isDark ? 'dark' : 'light');
+    // Set initial theme to light and ensure it's applied
+    document.documentElement.classList.remove('dark');
+    localStorage.theme = 'light';
+    setTheme('light');
   }, []);
 
   const toggleTheme = () => {
@@ -57,28 +60,42 @@ const Hero = () => {
           animate="animate"
           className="text-center"
         >
-          <motion.h1 
-            className="text-6xl md:text-8xl font-bold mb-8 text-white"
-            {...fadeIn}
-          >
-            Bhuvanesh
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl md:text-2xl max-w-2xl mx-auto text-white/90"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-          >
-            Full Stack Developer & Innovator<br />
-            <motion.span 
-              className="font-semibold text-blue-400 inline-block"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          {/* Animated Heading Component */}
+          <div className="flex flex-col items-center justify-center text-center mb-8">
+            {/* Main Heading with Scramble Effect */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent leading-tight"
             >
-              Vibe Coding
-            </motion.span> — Crafting code with passion, creativity, and a focus on positive impact.
-          </motion.p>
+              <UnscrambleHeading
+                text="Bhuvanesh"
+                color="inherit"
+                onceOnly={true}
+                className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent"
+              />
+            </motion.h1>
+
+            {/* Subheading with typing effect */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.6, -0.05, 0.01, 0.99] }}
+              className="text-lg md:text-xl lg:text-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 bg-clip-text text-transparent font-bold max-w-3xl"
+              style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
+            >
+              Full Stack Developer & Innovator — Vibe Coding — Crafting code with passion, creativity, and a focus on positive impact.
+            </motion.div>
+
+            {/* Decorative underline animation */}
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "100px" }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="h-1 bg-gradient-to-r from-blue-600 to-purple-600 mt-6 rounded-full"
+            />
+          </div>
 
           {/* Primary Action */}
           <motion.div 
@@ -104,7 +121,13 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            <h3 className="text-white/80 text-sm uppercase tracking-wider mb-4">Let&apos;s Connect</h3>
+            <h3 className="text-white/80 text-sm uppercase tracking-wider mb-4">
+              <UnscrambleHeading
+                text="Let's Connect"
+                color="inherit"
+                className="text-sm"
+              />
+            </h3>
             <AudioPlayer src="/demo/pb1.mp3" startVolume={0.35} loop />
             <div className="flex flex-wrap gap-4 justify-center items-center">
               <motion.a
