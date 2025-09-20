@@ -18,7 +18,7 @@ function useTextUnscramble(text: string) {
     let iteration = 0;
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const interval = setInterval(() => {
-      setDisplay((prev) =>
+      setDisplay(() =>
         text
           .split("")
           .map((char, index) => {
@@ -37,6 +37,66 @@ function useTextUnscramble(text: string) {
 
   return [display, handleHover] as const;
 }
+
+const MobileNavigationItem = ({ link, index, scrollToSection }: { 
+  link: { name: string; href: string }, 
+  index: number, 
+  scrollToSection: (href: string) => void 
+}) => {
+  const [display, handleHover] = useTextUnscramble(link.name);
+  
+  return (
+    <motion.li
+      key={link.name}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <motion.button
+        onClick={() => scrollToSection(link.href)}
+        onMouseEnter={handleHover}
+        className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
+        whileHover={{ 
+          scale: 1.05,
+          textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
+        }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {display}
+      </motion.button>
+    </motion.li>
+  );
+};
+
+const NavigationItem = ({ link, index, scrollToSection }: { 
+  link: { name: string; href: string }, 
+  index: number, 
+  scrollToSection: (href: string) => void 
+}) => {
+  const [display, handleHover] = useTextUnscramble(link.name);
+  
+  return (
+    <motion.li
+      key={link.name}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.15 }}
+    >
+      <motion.button
+        onClick={() => scrollToSection(link.href)}
+        onMouseEnter={handleHover}
+        className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
+        whileHover={{ 
+          y: -2,
+          textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
+        }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {display}
+      </motion.button>
+    </motion.li>
+  );
+};
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,30 +132,14 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-8">
-            {links.map((link, i) => {
-              const [display, handleHover] = useTextUnscramble(link.name);
-              return (
-                <motion.li
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.15 }}
-                >
-                  <motion.button
-                    onClick={() => scrollToSection(link.href)}
-                    onMouseEnter={handleHover}
-                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
-                    whileHover={{ 
-                      y: -2,
-                      textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {display}
-                  </motion.button>
-                </motion.li>
-              );
-            })}
+            {links.map((link, i) => (
+              <NavigationItem 
+                key={link.name}
+                link={link}
+                index={i}
+                scrollToSection={scrollToSection}
+              />
+            ))}
           </ul>
 
           {/* Mobile Menu Button */}
@@ -140,30 +184,14 @@ const Navigation = () => {
               className="absolute top-16 left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-lg md:hidden"
             >
               <div className="flex flex-col items-center gap-6 py-6">
-                {links.map((link, i) => {
-                  const [display, handleHover] = useTextUnscramble(link.name);
-                  return (
-                    <motion.li
-                      key={link.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                    >
-                      <motion.button
-                        onClick={() => scrollToSection(link.href)}
-                        onMouseEnter={handleHover}
-                        className="text-lg text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 font-mono"
-                        whileHover={{ 
-                          scale: 1.05,
-                          textShadow: "0px 0px 8px rgba(59, 130, 246, 0.5)"
-                        }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {display}
-                      </motion.button>
-                    </motion.li>
-                  );
-                })}
+                {links.map((link, i) => (
+                  <MobileNavigationItem 
+                    key={link.name}
+                    link={link}
+                    index={i}
+                    scrollToSection={scrollToSection}
+                  />
+                ))}
               </div>
             </motion.ul>
           )}

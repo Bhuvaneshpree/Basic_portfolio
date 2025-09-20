@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import AnimatedHeading from '@/components/common/AnimatedHeading';
 
 export default function AnimatedHeadingDemo() {
@@ -50,12 +51,12 @@ export default function AnimatedHeadingDemo() {
 
       {/* Navigation */}
       <div className="mt-8">
-        <a 
+        <Link 
           href="/"
           className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 font-medium"
         >
           Back to Portfolio
-        </a>
+        </Link>
       </div>
     </div>
   );

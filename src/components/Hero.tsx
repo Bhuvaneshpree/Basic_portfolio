@@ -2,9 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Parallax } from 'react-scroll-parallax';
 import AudioPlayer from './AudioPlayer';
-import AnimatedHeading from './common/AnimatedHeading';
 import UnscrambleHeading from './common/UnscrambleHeading';
 
 const Hero = () => {
@@ -27,12 +25,6 @@ const Hero = () => {
       document.documentElement.classList.remove('dark');
       localStorage.theme = 'light';
     }
-  };
-
-  const fadeIn = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8 }
   };
 
   return (

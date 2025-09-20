@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface UnscrambleHeadingProps {
   text: string;
@@ -13,13 +13,13 @@ function useTextUnscramble(text: string, onceOnly: boolean = false) {
   const [display, setDisplay] = useState(text);
   const [hasRun, setHasRun] = useState(false);
 
-  const runScramble = () => {
+  const runScramble = useCallback(() => {
     if (onceOnly && hasRun) return;
     
     let iteration = 0;
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
     const interval = setInterval(() => {
-      setDisplay((prev) =>
+      setDisplay(() =>
         text
           .split("")
           .map((char, index) => {
@@ -37,7 +37,7 @@ function useTextUnscramble(text: string, onceOnly: boolean = false) {
       }
       iteration += 1 / 3; // speed
     }, 30);
-  };
+  }, [text, onceOnly, hasRun]);
 
   const handleHover = () => {
     if (!onceOnly) {
@@ -54,7 +54,7 @@ function useTextUnscramble(text: string, onceOnly: boolean = false) {
       
       return () => clearTimeout(timer);
     }
-  }, [text, onceOnly, hasRun]);
+  }, [onceOnly, hasRun, runScramble]);
 
   return [display, handleHover] as const;
 }
